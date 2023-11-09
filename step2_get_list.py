@@ -14,12 +14,13 @@ if __name__ == '__main__':
 
     num_samples = 36 # define number of samples
     sample_list = list(range(1, num_samples+1))
-    sample_name = 'A{0}_Sample_0{1}_d.vtp'
-
+    #sample_name = 'A{0}_Sample_0{1}_d.vtp'
+    list_dirs = os.listdir(data_path)
     # get valid sample list
     valid_sample_list = []
     for i_sample in sample_list:
         for i_aug in range(num_augmentations):
+            sample_name = list_dirs[i_sample+i_aug]
             if os.path.exists(os.path.join(data_path, sample_name.format(i_aug, i_sample))):
                 valid_sample_list.append(i_sample)
 
