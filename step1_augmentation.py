@@ -51,7 +51,7 @@ if __name__ == "__main__":
     if not os.path.exists(output_save_path):
         os.mkdir(output_save_path)
 
-    sample_list = list(range(1, num_samples+1))
+    sample_list = list(range(0, num_samples))
     print(sample_list)
     num_augmentations = 1
 
