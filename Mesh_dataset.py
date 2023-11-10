@@ -16,7 +16,7 @@ class Mesh_Dataset(Dataset):
         self.data_list = pd.read_csv(data_list_path, header=None)
         self.num_classes = num_classes
         self.patch_size = patch_size
-
+        self.pd_path = '/content/labels'
     def __len__(self):
         return self.data_list.shape[0]
 
@@ -28,8 +28,13 @@ class Mesh_Dataset(Dataset):
 
         # read vtk
         mesh = load(i_mesh)
-        labels = mesh.celldata['Label'].astype('int32').reshape(-1, 1)
-
+        mesh_name = i_mesh.split('/')
+        name = mesh_name[2].split('_')
+        full_name = name[0] + '_' + name[1] + '.json'
+        #labels = mesh.celldata['Label'].astype('int32').reshape(-1, 1)
+        json_data = pd.read_json(os.path.join(self.pd_path, full_name))
+        labels = json_data['labels'].astype('int32')
+        labels = labels.values.reshape(-1,1)
         # new way
         # move mesh to origin
         points = mesh.points()
