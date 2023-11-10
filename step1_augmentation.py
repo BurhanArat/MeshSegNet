@@ -71,7 +71,7 @@ if __name__ == "__main__":
         #flipped mesh
         for i_aug in range(num_augmentations):
             file_name = list_dirs[i_sample].format(i_sample+1000)
-            output_file_name = f'{name}{i_aug}_sample_0{i_sample+1000}_d.vtp'
+            output_file_name = f'{name}_aug{i_aug}_sample_0{i_sample+1000}_d.vtp'
             vtk_matrix = GetVTKTransformationMatrix(rotate_X=[-180, 180], rotate_Y=[-180, 180], rotate_Z=[-180, 180],
                                                   translate_X=[-10, 10], translate_Y=[-10, 10], translate_Z=[-10, 10],
                                                   scale_X=[0.8, 1.2], scale_Y=[0.8, 1.2], scale_Z=[0.8, 1.2]) #use default random setting
