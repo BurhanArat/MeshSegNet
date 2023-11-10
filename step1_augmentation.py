@@ -44,7 +44,7 @@ def GetVTKTransformationMatrix(rotate_X=[-180, 180], rotate_Y=[-180, 180], rotat
 
 if __name__ == "__main__":
 
-    num_samples = 40 # need to define # of samples; e.g., 30
+    num_samples = 20 # need to define # of samples; e.g., 30
     vtk_path = '/content/data' # need to define the path; e.g., src
     list_dirs = os.listdir(vtk_path)
     output_save_path = './augmentation_vtk_data'
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
     sample_list = list(range(1, num_samples+1))
     print(sample_list)
-    num_augmentations = 20
+    num_augmentations = 1
 
     for i_sample in sample_list:
         for i_aug in range(num_augmentations):

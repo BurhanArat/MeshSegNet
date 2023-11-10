@@ -8,11 +8,11 @@ if __name__ == '__main__':
 
     data_path = './augmentation_vtk_data/'
     output_path = './'
-    num_augmentations = 20
+    num_augmentations = 1
     train_size = 0.8
     with_flip = True
 
-    num_samples = 36 # define number of samples
+    num_samples = 20 # define number of samples
     sample_list = list(range(1, num_samples+1))
     #sample_name = 'A{0}_Sample_0{1}_d.vtp'
     list_dirs = os.listdir(data_path)
@@ -46,10 +46,14 @@ if __name__ == '__main__':
         for i_sample in train_list:
             for i_aug in range(num_augmentations):
                 #print('Computing Sample: {0}; Aug: {1}...'.format(i_sample, i_aug))
-                subject_name = 'A{}_Sample_0{}_d.vtp'.format(i_aug, i_sample)
+                file_name = list_dirs[i_sample]
+                name = file_name.split('.')[0]
+                subject_name = f'{name}.vtp'
+                print(subject_name)
+                #subject_name = 'A{}_Sample_0{}_d.vtp'.format(i_aug, i_sample)
                 train_name_list.append(os.path.join(data_path, subject_name))
                 if with_flip:
-                    subject2_name = 'A{}_Sample_0{}_d.vtp'.format(i_aug, i_sample+1000)
+                    subject2_name = f'{name}.vtp'
                     train_name_list.append(os.path.join(data_path, subject2_name))
 
         with open(os.path.join(output_path, 'train_list_{0}.csv'.format(i_cv)), 'w') as file:
@@ -61,11 +65,12 @@ if __name__ == '__main__':
         for i_sample in val_list:
             for i_aug in range(num_augmentations):
                 #print('Computing Sample: {0}; Aug: {1}...'.format(i_sample, i_aug))
-                subject_name = 'A{}_Sample_0{}_d.vtp'.format(i_aug, i_sample)
-                val_name_list.append(os.path.join(data_path, subject_name))
+                subject_name3 = f'{name}.vtp'
+                print(subject_name3)
+                val_name_list.append(os.path.join(data_path, subject_name3))
                 if with_flip:
-                    subject2_name = 'A{}_Sample_0{}_d.vtp'.format(i_aug, i_sample+1000)
-                    val_name_list.append(os.path.join(data_path, subject2_name))
+                    subject4_name = f'{name}.vtp'
+                    val_name_list.append(os.path.join(data_path, subject4_name))
 
         with open(os.path.join(output_path, 'val_list_{0}.csv'.format(i_cv)), 'w') as file:
             for f in val_name_list:
